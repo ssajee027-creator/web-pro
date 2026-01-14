@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Mafia | Professional Gaming Tournament</title>
+
+    <style>
+        /* GOOGLE FONTS & GLOBAL STYLES */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;500;700&display=swap');
+
+        :root {
+            --neon-blue: #00d2ff;
+            --dark-blue: #003366;
+            --bg-black: #050810;
+            --card-bg: rgba(15, 23, 42, 0.9);
+            --text-white: #e2e8f0;
+            --glow: 0 0 15px rgba(0, 210, 255, 0.6);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-black);
+            color: var(--text-white);
+            font-family: 'Poppins', sans-serif;
+            background-image: radial-gradient(circle at top right, #001f3f, transparent);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            padding: 20px;
+        }
+
+        /* Multi-page Navigation Logic */
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* LOGO STYLES (HTML + CSS Combined here) */
+        .logo-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .tournament-logo {
+            width: 140px;
+            /* Logo அளவு */
+            height: auto;
+            filter: drop-shadow(0 0 10px var(--neon-blue));
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 5px var(--neon-blue));
+            }
+
+            50% {
+                transform: scale(1.05);
+                filter: drop-shadow(0 0 15px var(--neon-blue));
+            }
+
+            100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 5px var(--neon-blue));
+            }
+        }
+
+        /* Card & Layout Styles */
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 210, 255, 0.2);
+            border-top: 5px solid var(--neon-blue);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+
+        /* Form Elements */
+        label {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0 20px 0;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #1e293b;
+            color: var(--neon-blue);
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Professional Buttons */
+        .btn-blue {
+            width: 100%;
+            background: linear-gradient(45deg, var(--dark-blue), var(--neon-blue));
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: var(--glow);
+            transition: 0.3s;
+        }
+
+        .btn-blue:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 25px var(--neon-blue);
+            color: #000;
+            background: var(--neon-blue);
+        }
+
+        .btn-blue:disabled {
+            background: #555;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        /* Prize & Rules Display */
+        .prize-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px dashed #1e293b;
+        }
+
+        .prize-money {
+            color: #ffcc00;
+            font-weight: bold;
+        }
+
+        .rules-list {
+            text-align: left;
+            padding: 0;
+            list-style: none;
+        }
+
+        .rules-list li {
+            border-left: 3px solid var(--neon-blue);
+            padding-left: 10px;
+            margin-bottom: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px;
+            border-radius: 0 5px 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <section id="home-page" class="page active">
+            <div class="logo-container">
+                <img src="c:\Users\ssaje\Downloads\images.jpg" alt="Tournament Logo" class="tournament-logo">
+            </div>
+            <div style="text-align: center;">
+                <h3 style="color: var(--neon-blue); margin-bottom: 5px;">Firet Tournament Presents</h3>
+                <h1 style="font-size: 2.5rem; text-shadow: var(--glow); margin: 10px 0;">ELITE MAFIA</h1>
+                <p style="color: #94a3b8;">Join the Ultimate Battleground</p>
+                <button class="btn-blue" onclick="showPage('prize-page')">Check Prize Pool</button>
+            </div>
+        </section>
+
+        <section id="prize-page" class="page">
+            <div class="card">
+                <h2>🏆 Prize Pool</h2>
+                <div class="prize-item"><span>Winner</span> <span class="prize-money">₹5,000</span></div>
+                <div class="prize-item"><span>Runner Up</span> <span class="prize-money">₹2,500</span></div>
+                <div class="prize-item"><span>3rd Place</span> <span class="prize-money">₹1,000</span></div>
+                <div class="prize-item"><span>Top Fragger (MVP)</span> <span class="prize-money">₹500</span></div>
+                <button class="btn-blue" onclick="showPage('rules-page')" style="margin-top: 20px;">Match Rules</button>
+            </div>
+        </section>
+
+        <section id="rules-page" class="page">
+            <div class="card">
+                <h2 style="color: #ff4b2b;">🚫 Rules</h2>
+                <ul class="rules-list">
+                    <li>Strictly No Hacks (Insta-Ban)</li>
+                    <li>Mobile Players only (No PC)</li>
+                    <li>Be in the room 10 min early</li>
+                    <li>Screenshot is must for verification</li>
+                </ul>
+                <button class="btn-blue" onclick="showPage('register-page')">Agree & Register</button>
+            </div>
+        </section>
+
+        <section id="register-page" class="page">
+            <div class="card">
+                <h2 style="color: var(--neon-blue);">Registration</h2>
+                <form id="tournamentForm">
+                    <label>Player Name (IGN)</label>
+                    <input type="text" name="Name" placeholder="Enter Game Name" required>
+
+                    <label>Team Name</label>
+                    <input type="text" name="Team" placeholder="Enter Team Name" required>
+
+                    <label>WhatsApp Number</label>
+                    <input type="tel" name="Phone" placeholder="+91 XXXXX XXXXX" required>
+
+                    <label>Platform</label>
+                    <select name="Platform">
+                        <option>Mobile (iOS/Android)</option>
+                        <option>PC / Emulator</option>
+                    </select>
+
+                    <label>Server</label>
+                    <select name="Server">
+                        <option>India Server</option>
+                        <option>Asia Server</option>
+                        <option>Middle East</option>
+                    </select>
+
+                    <label>Game ID (UID)</label>
+                    <input type="text" name="UID" placeholder="Enter Game UID" required>
+
+                    <button type="submit" class="btn-blue" id="submitBtn">Submit & Finish</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="success-page" class="page">
+            <div class="card" style="text-align: center; border-top-color: #00ffcc;">
+                <h1 style="color: #00ffcc; text-shadow: 0 0 10px #00ffcc;">SUCCESS! ✅</h1>
+                <p>Registration Complete. Your details are saved.</p>
+                <hr style="border: 0.5px solid #1e293b; margin: 20px 0;">
+                <p style="font-size: 0.9rem;">Join our WhatsApp community for further updates.</p>
+                <a href="YOUR_WHATSAPP_LINK" class="btn-blue"
+                    style="background:#25D366; text-decoration:none; display:block; text-align:center;">Join WhatsApp
+                    Group</a>
+                <button class="btn-blue"
+                    style="background:transparent; border: 1px solid #333; margin-top:15px; box-shadow:none;"
+                    onclick="location.reload()">Return Home</button>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        // GOOGLE SCRIPT URL BELOW
+        const scriptURL = 'YOUR_GOOGLE_SCRIPT_URL_HERE';
+
+        const form = document.getElementById('tournamentForm');
+        const submitBtn = document.getElementById('submitBtn');
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = "Submitting Details...";
+
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => {
+                    showPage('success-page');
+                })
+                .catch(error => {
+                    alert('Submission Failed! Check your Script URL.');
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = "Submit & Finish";
+                });
+        });
+    </script>
+
+</body>
+
+</html>
